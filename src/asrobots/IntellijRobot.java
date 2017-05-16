@@ -8,9 +8,10 @@ import robocode.*;
 import robocode.DeathEvent;
 import robocode.Robot;
 import robocode.ScannedRobotEvent;
-import static robocode.util.Utils.normalRelativeAngleDegrees;
-import java.awt.*;
 
+import static robocode.util.Utils.normalRelativeAngleDegrees;
+
+import java.awt.*;
 
 
 /**
@@ -52,22 +53,31 @@ public class IntellijRobot extends Robot {
         while (true) {
             goRound();
 
-                turnGunLeft(360);
-            }
+
+            turnGunLeft(360);
+        }
 
 
     }
 
+    @Override
+    public void onHitWall(HitWallEvent event) {
+        turnLeft(45);
+    }
 
+    @Override
+    public void onHitRobot(HitRobotEvent event) {
+        back(200);
+    }
 
-    public void onBulletMissed (BulletMissedEvent event){
+    public void onBulletMissed(BulletMissedEvent event) {
         out.println("Damn I missed");
 
     }
 
     public void goRound() {
         turnLeft(30);
-        ahead(4);
+        ahead(400);
     }
 
     public void goCorner() {
@@ -106,6 +116,10 @@ public class IntellijRobot extends Robot {
             resume();
         } else {
             smartFire(e.getDistance());
+            System.out.println("Headingradians" + e.getHeadingRadians());
+            System.out.println("Heading " + e.getHeading());
+            System.out.println("pozycja dziala " + getGunHeading());
+            turnGunRight(15);
         }
     }
 
