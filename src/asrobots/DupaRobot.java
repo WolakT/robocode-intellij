@@ -5,7 +5,7 @@ import robocode.Robot;
 /**
  * Created by adrian on 4/28/17.
  */
-public class DupaRobot extends Robot {
+public class DupaRobot extends Robot{
 
     @Override
     public void run() {
